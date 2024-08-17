@@ -1,35 +1,67 @@
 #include "Engine.h"
-#include "Font.h"
-#include "Text.h" 
-
+#include "Components/PlayerComponent.h"
 
 #include <iostream>
-#include <cstdlib>
 #include <vector>
-
-int main(int argc, char* argv[])
-{
-
-	g_engine.Initialize();
+#include <cstdlib>
 
 
+int main(int argc, char* argv[]) {
+
+	Factory::Instance().Register<Actor>(Actor::GetTypeName());
+	Factory::Instance().Register<TextureComponent>(TextureComponent::GetTypeName());
+	Factory::Instance().Register<EnginePhysicsComponent>(EnginePhysicsComponent::GetTypeName());
+	Factory::Instance().Register<PlayerComponent>(PlayerComponent::GetTypeName());
+	Factory::Instance().Register<TextComponent>(TextComponent::GetTypeName());
+
+	//create engine
+	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
+	engine->Initialize();
+
+	//create scene
+
+	//load assets
+	File::SetFilePath("Assets");
+	std::cout << File::GetFilePath() << std::endl;
+
+	rapidjson::Document doc;
+	Json::Load("Scenes/scene.json", doc);
+
+	std::unique_ptr<Scene> scene = std::make_unique<Scene>(engine.get());
+	scene->read(doc);
+	scene->Initialize();
 
 
-	while (!g_engine.isQuit()) {
-		g_engine.Update();
+	{
 
+		while (!engine->IsQuit()) {
+			//input
 
-		g_engine.GetRenderer().SetColor(0, 0, 0, 0);
+			//update
+			engine->Update();
+			scene->Update(engine->GetTime().GetDeltaTime());
 
-		g_engine.GetRenderer().BeginFrame();  
+			auto* actor = scene->GetActor<Actor>();
+			if (actor) {
 
-		g_engine.GetPS().Draw(g_engine.GetRenderer());
+				actor->transform.scale = 1.0f + Math::Sin(engine->GetTime().GetTime());
 
-		g_engine.GetRenderer().EndFrame();
+				actor->transform.rotation += 60.0f;
+				//actor->transform.rotation += 90 * engine->GetTime().GetDeltaTime();
+			}
 
+			//draw
+			engine->GetRenderer().SetColor(0, 0, 0, 0);
+			engine->GetRenderer().BeginFrame();
+
+			scene->Draw(engine->GetRenderer());
+
+			//stop drawing
+			engine->GetRenderer().EndFrame();
+		}
 	}
-	g_engine.Shutdown();
-
+	scene->RemoveAll();
+	ResourceManager::Instance().Clear();
+	engine->Shutdown();
 	return 0;
 }
-

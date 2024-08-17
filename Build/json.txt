@@ -1,0 +1,8 @@
+{
+  "name": "Desist",
+  "age": 19,
+  "speed": 20.5,
+  "isAwake": false,
+  "position": [10, 20],
+  "color": [1, 0, 0, 1] 
+}
