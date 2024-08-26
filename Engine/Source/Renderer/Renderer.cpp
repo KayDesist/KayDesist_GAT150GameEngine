@@ -41,7 +41,7 @@ bool Renderer::CreateWindow(string title, int width, int height)
 	m_height = height;
 	//create Window
 	// returns pointer to window if successful or nullptr if failed
-	m_window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
+	 m_window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 
 	if (m_window == nullptr) {
 		cerr << "Error creating SDL window: " << SDL_GetError() << endl;
@@ -49,32 +49,32 @@ bool Renderer::CreateWindow(string title, int width, int height)
 		return false;
 	}
 	//create renderer
-	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if (m_renderer == nullptr) {
-		cerr << "Error creating SDL renderer: " << SDL_GetError() << endl;
-		SDL_Quit();
-		return false;
-	}
+	 m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	 if (m_renderer == nullptr) {
+		 cerr << "Error creating SDL renderer: " << SDL_GetError() << endl;
+		 SDL_Quit();
+		 return false;
+	 }
 	return true;
 }
 
-void Renderer::BeginFrame() { SDL_RenderClear(m_renderer); }
+void Renderer::BeginFrame() {SDL_RenderClear(m_renderer);}
 
-void Renderer::EndFrame() { SDL_RenderPresent(m_renderer); }
+void Renderer::EndFrame() {SDL_RenderPresent(m_renderer);}
 
-void Renderer::SetColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a) { SDL_SetRenderDrawColor(m_renderer, r, g, b, a); }
+void Renderer::SetColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {SDL_SetRenderDrawColor(m_renderer, r, g, b, a);}
 
-void Renderer::DrawLine(int x1, int y1, int x2, int y2) { SDL_RenderDrawLine(m_renderer, x1, y1, x2, y2); }
+void Renderer::DrawLine(int x1, int y1, int x2, int y2) {SDL_RenderDrawLine(m_renderer, x1, y1, x2, y2);}
 
-void Renderer::DrawLine(float x1, float y1, float x2, float y2) { SDL_RenderDrawLineF(m_renderer, x1, y1, x2, y2); }
+void Renderer::DrawLine(float x1, float y1, float x2, float y2) {SDL_RenderDrawLineF(m_renderer, x1, y1, x2, y2);}
 
-void Renderer::DrawPoint(int x, int y) { SDL_RenderDrawPoint(m_renderer, x, y); }
+void Renderer::DrawPoint(int x, int y) {SDL_RenderDrawPoint(m_renderer, x, y);}
 
-void Renderer::DrawPoint(float x, float y) { SDL_RenderDrawPointF(m_renderer, x, y); }
+void Renderer::DrawPoint(float x, float y) {SDL_RenderDrawPointF(m_renderer, x, y);}
 
 void Renderer::DrawRect(int x, int y, int w, int h)
 {
-	SDL_Rect rect{ x - w / 2,y - h / 2,w,h };
+	SDL_Rect rect{x - w/2,y - h / 2,w,h};
 	SDL_RenderFillRect(m_renderer, &rect);
 }
 
@@ -89,8 +89,8 @@ void Renderer::DrawTexture(std::weak_ptr<Texture> texture, float x, float y, flo
 	Vector2 size = texture.lock()->GetSize();
 
 	SDL_FRect destRect;
-	destRect.x = x;
-	destRect.y = y;
+	destRect.x = x - (size.x * 0.5f);
+	destRect.y = y - (size.y * 0.5f);
 	destRect.w = size.x;
 	destRect.h = size.y;
 
@@ -98,13 +98,13 @@ void Renderer::DrawTexture(std::weak_ptr<Texture> texture, float x, float y, flo
 	SDL_RenderCopyExF(m_renderer, texture.lock()->m_texture, NULL, &destRect, angle, NULL, SDL_FLIP_NONE);
 }
 
-void Renderer::DrawTexture(std::weak_ptr<Texture> texture, const Transform& transform, bool hflip)
+void Renderer::DrawTexture(std::weak_ptr<Texture> texture, const Transform& transform,bool hflip)
 {
 	Vector2 size = texture.lock()->GetSize() * transform.scale;
 
 	SDL_FRect destRect;
-	destRect.x = transform.position.x;
-	destRect.y = transform.position.y;
+	destRect.x = transform.position.x - (size.x * 0.5f);
+	destRect.y = transform.position.y - (size.y * 0.5f);
 	destRect.w = size.x;
 	destRect.h = size.y;
 

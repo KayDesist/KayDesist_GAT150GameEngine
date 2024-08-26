@@ -21,5 +21,5 @@ public:
 
 private:
 	struct SDL_Texture* m_texture{ nullptr };
-
+	
 };

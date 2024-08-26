@@ -6,6 +6,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <functional>
 
 class Renderer;
 
@@ -13,14 +14,21 @@ class Actor : public Object {
 public:
 	Actor() = default;
 	Actor(const Transform& transform) : transform{ transform } {}
+	Actor(const Actor& other);
 
 	CLASS_DECLARATION(Actor)
+
+		CLASS_PROTOTYPE(Actor)
+
 		friend class Scene;
 
 	void Initialize();
 
 	virtual void Update(float dt);
 	virtual void Draw(Renderer& renderer);
+
+	std::function<void(Actor*)> OnCollisionEnter;
+	std::function<void(Actor*)> OnCollisionExit;
 
 	void AddComponent(std::unique_ptr<Component> component);
 
@@ -36,9 +44,9 @@ public:
 	bool destroyed = false;
 	Transform transform;
 	Scene* scene{ nullptr };
+	bool active = false;
+
 protected:
-
-
 
 	std::vector<std::unique_ptr<Component>> components;
 };

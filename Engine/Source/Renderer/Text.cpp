@@ -1,4 +1,3 @@
-
 #include "Text.h"
 #include "Font.h"
 #include "Texture.h"
@@ -43,4 +42,4 @@ void Text::Draw(Renderer& renderer, float x, float y, float angle)
 
 	renderer.DrawTexture(m_texture, x, y);
 }
-
+ 

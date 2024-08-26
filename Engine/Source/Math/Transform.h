@@ -9,7 +9,9 @@ struct Transform : public Serializable
 	float scale = 1;
 
 	Transform() = default;
-	Transform(Vector2 position, float rotation = 0, float scale = 1) : position{ position }, rotation{ rotation }, scale{ scale } {}
+	Transform(Vector2 position, float rotation = 0, float scale = 1) : position{position},rotation{rotation},scale{scale} {}
+
+	Vector2 Forward() { return Vector2{ 1,0 }.Rotate(Math::DegToRad(rotation)); }
 
 	// Inherited via Serializable
 	void read(const json_t& value) override;

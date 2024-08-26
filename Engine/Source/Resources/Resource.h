@@ -4,7 +4,7 @@
 #include <cstdarg>
 
 class Resource {
-public:
+public: 
 	Resource() = default;
 	~Resource() = default;
 
@@ -12,5 +12,5 @@ public:
 private:
 };
 
-template<typename T = Resource>
+template<typename T = Resource> 
 using res_t = std::shared_ptr<T>;

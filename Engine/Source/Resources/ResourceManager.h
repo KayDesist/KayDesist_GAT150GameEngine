@@ -4,7 +4,7 @@
 #include "../Core/EString.h"
 #include <map>
 #include <iostream>
-class ResourceManager : public Singleton<ResourceManager> {
+class ResourceManager : public Singleton<ResourceManager>{
 public:
 
 	void Clear() { m_resources.clear(); }
@@ -21,7 +21,7 @@ private:
 	std::map<std::string, res_t<Resource>> m_resources;
 };
 
-template<typename T, typename ... TArgs>
+template<typename T,typename ... TArgs>
 inline res_t<T> ResourceManager::Get(const std::string& name, TArgs ... args)
 {
 	std::string lName = ToLower(name);
@@ -39,7 +39,7 @@ inline res_t<T> ResourceManager::Get(const std::string& name, TArgs ... args)
 		std::cerr << "Could not create resource: " << lName << std::endl;
 		return res_t<T>();
 	}
-
+	
 	//add resource to resource manager
 	m_resources[lName] = resource;
 	return resource;

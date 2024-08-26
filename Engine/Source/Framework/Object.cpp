@@ -1,11 +1,12 @@
 #include "Object.h"
 
-void Read(const json_t& value)
-{ 
-	READ_DATA(value, name); 
-	READ_DATA(value, active);
+void Object::read(const json_t& value)
+{
+	READ_DATA(value, name);
+	//READ_DATA(value, isActive);
 }
 
-void Write(json_t& value)
+void Object::Write(json_t& value)
 {
+
 }

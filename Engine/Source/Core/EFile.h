@@ -10,7 +10,7 @@ namespace File {
 
 	bool FileExist(const std::string& filepath);
 
-	bool GetFileSize(const std::string& filepath, int* size);
+	bool GetFileSize(const std::string& filepath,int* size);
 
 	bool readFile(const std::string& filepath, std::string& buffer);
 }

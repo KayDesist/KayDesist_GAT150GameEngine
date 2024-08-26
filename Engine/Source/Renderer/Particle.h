@@ -30,10 +30,10 @@ struct Particle {
 		: position{ position },
 		velocity{ velocity } {}
 
-	Particle(Vector2 position, Vector2 velocity, float lifespan, int r, int g, int b, int a)
+	Particle(Vector2 position, Vector2 velocity, float lifespan,int r, int g, int b, int a)
 		: position{ position },
 		velocity{ velocity },
-		lifespan{ lifespan },
+		lifespan{lifespan},
 		r{ r }, g{ g }, b{ b }, a{ a } {}
 
 	void Initialize(const Data& data);

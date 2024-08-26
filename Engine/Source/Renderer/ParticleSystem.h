@@ -19,3 +19,4 @@ private:
 	Particle* GetFreeParticle();
 	std::vector<Particle> m_particles;
 };
+

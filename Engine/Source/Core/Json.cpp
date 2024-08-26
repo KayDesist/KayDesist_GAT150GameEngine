@@ -1,11 +1,10 @@
-
 #include "Json.h"
 #include "EFile.h"
 #include <rapidjson/istreamwrapper.h>
 #include <iostream>
 
 namespace Json {
-
+    
     bool Load(const std::string& filename, rapidjson::Document& doc) {
 
         std::string buffer;
@@ -23,11 +22,11 @@ namespace Json {
 
         return true;
     }
-
+    
     bool Read(const rapidjson::Value& value, const std::string& name, int& data, bool isRequired)
     {
         if (!value.HasMember(name.c_str())) {
-            if (isRequired) {
+            if(isRequired) {
                 std::cerr << "Could not read JSON value: " << name << std::endl;
                 return false;
             }
@@ -75,7 +74,7 @@ namespace Json {
             }
             return false;
         }
-        if (!value[name.c_str()].IsBool()) {
+        if (!value[name.c_str()].IsNumber()) {
             if (isRequired) {
                 std::cerr << "Invalid type: " << name << std::endl;
                 return false;
@@ -85,7 +84,7 @@ namespace Json {
         data = value[name.c_str()].GetBool();
         return true;
     }
-
+    
     bool Read(const rapidjson::Value& value, const std::string& name, std::string& data, bool isRequired)
     {
         if (!value.HasMember(name.c_str())) {
@@ -105,7 +104,7 @@ namespace Json {
         data = value[name.c_str()].GetString();
         return true;
     }
-
+    
     bool Read(const rapidjson::Value& value, const std::string& name, Vector2& data, bool isRequired)
     {
         // check if the value has the "<name>" and is an array with 2 elements
@@ -135,7 +134,7 @@ namespace Json {
 
         return true;
     }
-
+    
     bool Read(const rapidjson::Value& value, const std::string& name, Color& data, bool isRequired)
     {
         // check if the value has the "<name>" and is an array with 2 elements
@@ -145,7 +144,7 @@ namespace Json {
                 std::cerr << "Could not read Json value: " << name << std::endl;
                 return false;
             }
-
+            
         }
 
         // get json array object
@@ -166,3 +165,4 @@ namespace Json {
         return true;
     }
 }
+

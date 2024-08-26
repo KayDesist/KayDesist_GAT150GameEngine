@@ -1,5 +1,6 @@
 #include "EnginePhysicsComponent.h"
 
+FACTORY_REGISTER(EnginePhysicsComponent)
 
 void EnginePhysicsComponent::Initialize()
 {
@@ -18,6 +19,11 @@ void EnginePhysicsComponent::ApplyForce(const Vector2& force)
 {
 	assert(mass != 0);
 	acceleration += force / mass;
+}
+
+void EnginePhysicsComponent::ApplyTorque(float angle)
+{ 
+	owner->transform.rotation += angle;
 }
 
 void EnginePhysicsComponent::SetPosition(const Vector2& position)

@@ -43,9 +43,9 @@ Vector2 Texture::GetSize()
     // query the texture for the size
     // https://wiki.libsdl.org/SDL2/SDL_QueryTexture
     SDL_Point size;
-    SDL_QueryTexture(m_texture, NULL, NULL, &size.x, &size.y);
+    SDL_QueryTexture(m_texture, NULL, NULL,&size.x,&size.y);
 
-    return Vector2{ size.x,size.y };
+    return Vector2{size.x,size.y};
 }
 
 bool Texture::Create(std::string name, ...)
@@ -55,5 +55,5 @@ bool Texture::Create(std::string name, ...)
     Renderer& renderer = va_arg(args, Renderer);
     va_end(args);
 
-    return Load(name, renderer);
+    return Load(name,renderer);
 }
