@@ -31,6 +31,7 @@
 #include "Math/Random.h"
 #include "Math/MathUtils.h"
 #include "Math/Transform.h"
+#include "Math/Rect.h"
 
 // ** framework **
 #include "Framework/Actor.h"
@@ -49,6 +50,7 @@
 
 // ** components **
 #include "Components/TextureComponent.h"
+#include "Components/TextureAnimationComponent.h"
 #include "Components/EnginePhysicsComponent.h"
 #include "Components/TextComponent.h"
 
@@ -76,7 +78,6 @@ public:
 	Audio& GetAudio() { return *m_audio; }
 	ParticleSystem& GetPS() { return *m_ps; }
 	Physics& GetPhysics() { return *m_physics; }
-
 
 private:
 

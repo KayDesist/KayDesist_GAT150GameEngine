@@ -11,9 +11,9 @@ public:
 	Box2DPhysicsComponent(const Box2DPhysicsComponent& other);
 
 	CLASS_DECLARATION(Box2DPhysicsComponent)
-	CLASS_PROTOTYPE(Box2DPhysicsComponent)
+		CLASS_PROTOTYPE(Box2DPhysicsComponent)
 
-	void Initialize() override;
+		void Initialize() override;
 	void Update(float dt) override;
 
 	void ApplyForce(const Vector2& force) override;
@@ -25,6 +25,7 @@ public:
 public:
 	RigidBody::def_t rigidBodyDef;
 	Vector2 size{ 0, 0 };
+	Vector2 scale{ 1, 1 };
 
 private:
 	std::unique_ptr<RigidBody> m_rigidBody;
