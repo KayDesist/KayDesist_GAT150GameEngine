@@ -7,9 +7,9 @@ public:
 	AudioComponent(const AudioComponent& other);
 
 	CLASS_DECLARATION(AudioComponent)
-	CLASS_PROTOTYPE(AudioComponent)
+		CLASS_PROTOTYPE(AudioComponent)
 
-	void Initialize() override;
+		void Initialize() override;
 	void Update(float dt) override;
 
 	void Play();

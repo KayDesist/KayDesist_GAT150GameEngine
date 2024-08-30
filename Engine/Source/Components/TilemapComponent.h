@@ -7,9 +7,9 @@ public:
 	TilemapComponent() = default;
 
 	CLASS_DECLARATION(TilemapComponent)
-	CLASS_PROTOTYPE(TilemapComponent)
+		CLASS_PROTOTYPE(TilemapComponent)
 
-	void Initialize() override;
+		void Initialize() override;
 	void Update(float dt) override;
 public:
 	int numColums = 0;

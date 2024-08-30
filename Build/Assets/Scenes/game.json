@@ -1,0 +1,67 @@
+{
+  "actors": [
+    {
+      "name": "background",
+      "transform": {
+        "position": [ 400, 300 ],
+        "rotation": 0,
+        "scale": 2.3
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/background.png"
+        },
+        {
+          "type": "AudioComponent",
+          "soundName": "Audio/background_sound.wav",
+          "playOnStart": true,
+          "loop": true,
+          "volume": 0.5,
+          "pitch": 1
+        }
+      ]
+    },
+    {
+      "name": "player",
+      "transform": {
+        "position": [ 60, 60 ],
+        "rotation": 0,
+        "scale": 3,
+        "tag": "player"
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "idle",
+          "animations": [
+            {
+              "name": "idle",
+              "fps": 2,
+              "numColumns": 4,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 4,
+              "textureName": "Textures/jellyfish.png"
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0.5,
+          "gravityScale": 0.4,
+          "contrainAngle": false,
+          "restitution": 0.1,
+          "size": [ 32, 45 ],
+          "shape": "capsule",
+          "scale": [ 1, 0.8 ]
+        },
+        {
+          "type": "CharacterComponent",
+          "speed": 500
+        }
+      ]
+    }
+
+  ]
+}

@@ -20,7 +20,7 @@ bool CircleCollisionComponent::CheckCollision(const CollisionComponent* collisio
     float r2 = (dynamic_cast<const CircleCollisionComponent*>(collision))->radius;
 
     float distance = owner->transform.position.Distance(collision->owner->transform.position);
-   
+
     return (distance <= (r1 + r2));
 }
 

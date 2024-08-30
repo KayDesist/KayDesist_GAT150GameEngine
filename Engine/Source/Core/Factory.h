@@ -57,7 +57,7 @@ inline std::unique_ptr<T> Factory::Create(const std::string& name) {
 	}
 
 	std::cerr << "Could not create factory object: " << name << std::endl;
-	
+
 	//name not found, return empty unique_ptr
 	return std::unique_ptr<T>();
 }

@@ -1,3 +1,4 @@
+
 #pragma once
 // ** core **
 #include "Core/ETimer.h"
@@ -53,6 +54,7 @@
 #include "Components/TextureAnimationComponent.h"
 #include "Components/EnginePhysicsComponent.h"
 #include "Components/TextComponent.h"
+#include "Components/AudioComponent.h"
 
 //external libraries
 #include <iostream>

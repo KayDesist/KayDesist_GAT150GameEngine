@@ -1,3 +1,4 @@
+
 #include "EString.h"
 
 
@@ -31,4 +32,3 @@ bool IsEqualIgnoreCase(const std::string& str1, const std::string& str2)
 		return std::tolower(c1) == std::tolower(c2);
 		});
 }
-

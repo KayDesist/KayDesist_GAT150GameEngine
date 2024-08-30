@@ -1,31 +1,17 @@
-#include "RocketComponent.h"
-#include "Engine.h"
+#pragma once
+#include "Components/Component.h"
 
-FACTORY_REGISTER(RocketComponent)
+class RocketComponent : public Component {
+public:
+	CLASS_DECLARATION(RocketComponent)
+		CLASS_PROTOTYPE(RocketComponent)
 
+		void Initialize() override;
+	void Update(float dt) override;
 
-void RocketComponent::Initialize()
-{
-	owner->OnCollisionEnter = std::bind(&RocketComponent::OnCollisionEnter, this, std::placeholders::_1);
-}
+	void OnCollisionEnter(Actor*);
 
-void RocketComponent::Update(float dt)
-{
-	owner->GetComponent<PhysicsComponent>()->SetVelocity(owner->transform.Forward() * speed);
-}
+public:
+	float speed = 0.0f;
 
-void RocketComponent::OnCollisionEnter(Actor* actor)
-{
-	if (!actor->destroyed && (actor->name == "enemy")) {
-		actor->destroyed = true;
-	}
-}
-
-void RocketComponent::read(const json_t& value)
-{
-	READ_DATA(value, speed);
-}
-
-void RocketComponent::Write(json_t& value)
-{
-}
+};

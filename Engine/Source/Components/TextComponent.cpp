@@ -21,7 +21,7 @@ TextComponent::TextComponent(const TextComponent& other)
 void TextComponent::Initialize()
 {
 	if (!m_text && !fontName.empty()) {
-		auto font = ResourceManager::Instance().Get<Font>(fontName,fontSize);
+		auto font = ResourceManager::Instance().Get<Font>(fontName, fontSize);
 		m_text = std::make_unique<Text>(font);
 	}
 }
@@ -34,7 +34,7 @@ void TextComponent::Update(float dt)
 void TextComponent::Draw(Renderer& renderer)
 {
 	if (textChanged) {
-		m_text->Create(renderer,text,color);
+		m_text->Create(renderer, text, color);
 		textChanged = false;
 	}
 	renderer.DrawTexture(m_text->GetTexture(), owner->transform);

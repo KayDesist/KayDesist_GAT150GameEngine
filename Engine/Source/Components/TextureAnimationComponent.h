@@ -41,4 +41,3 @@ private:
 	std::map<std::string, Animation> m_animations;
 	Animation* m_animation = nullptr;
 };
-

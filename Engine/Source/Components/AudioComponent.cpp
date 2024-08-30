@@ -22,7 +22,7 @@ AudioComponent::AudioComponent(const AudioComponent& other)
 
 void AudioComponent::Initialize() {
 	if (!m_audioSource && !soundName.empty()) {
-		auto audioClip = ResourceManager::Instance().Get<AudioClip>(soundName,owner->scene->engine->GetAudio());
+		auto audioClip = ResourceManager::Instance().Get<AudioClip>(soundName, owner->scene->engine->GetAudio());
 		m_audioSource = std::make_unique<AudioSource>(audioClip);
 	}
 }
@@ -36,11 +36,11 @@ void AudioComponent::Update(float dt) {
 
 void AudioComponent::Play() {
 	if (m_audioSource) {
-		m_audioSource->Play(owner->scene->engine->GetAudio(),loop,volume,pitch);
+		m_audioSource->Play(owner->scene->engine->GetAudio(), loop, volume, pitch);
 	}
 }
 
-void AudioComponent::Play(bool loop,float volume,float pitch) {
+void AudioComponent::Play(bool loop, float volume, float pitch) {
 	if (m_audioSource) {
 		m_audioSource->Play(owner->scene->engine->GetAudio(), loop, volume, pitch);
 	}

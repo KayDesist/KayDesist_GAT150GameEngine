@@ -4,13 +4,13 @@
 
 #include <string>
 
-class AudioClip : public Resource{
+class AudioClip : public Resource {
 public:
 	AudioClip() = default;
 	~AudioClip();
 
-	bool Create(std::string name,...) override;
-	bool Load(const std::string& filename,class Audio& audio);
+	bool Create(std::string name, ...) override;
+	bool Load(const std::string& filename, class Audio& audio);
 
 	friend class Audio;
 	friend class AudioSource;

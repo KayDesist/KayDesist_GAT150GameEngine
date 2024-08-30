@@ -1,0 +1,131 @@
+{
+  "actors": [
+    {
+      "name": "enemy1",
+      "transform": {
+        "position": [ 750, 50 ],
+        "rotation": 0,
+        "scale": 3,
+        "tag": "enemy",
+        "prototype": true
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "turtle",
+          "animations": [
+            {
+              "name": "turtle",
+              "fps": 3,
+              "numColumns": 6,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 6,
+              "restitution": 5,
+              "loop": true,
+              "isDynamic": true,
+              "textureName": "Textures/turtle.png"
+
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0,
+          "gravityScale": 0,
+          "shape": "circle",
+          "scale": [ 1, 1 ]
+        },
+        {
+          "type": "EnemyComponent",
+          "speed": 10,
+          "direction": -10
+        }
+      ]
+    },
+    {
+      "name": "enemy2",
+      "transform": {
+        "position": [ 750, 100 ],
+        "rotation": 0,
+        "scale": 3,
+        "tag": "enemy",
+        "prototype": true
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "turtle",
+          "animations": [
+            {
+              "name": "turtle",
+              "fps": 3,
+              "numColumns": 6,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 6,
+              "restitution": 5,
+              "loop": true,
+              "isDynamic": true,
+              "textureName": "Textures/turtle.png"
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0,
+          "gravityScale": 0,
+          "shape": "circle",
+          "scale": [ 1, 1 ]
+        },
+        {
+          "type": "EnemyComponent",
+          "speed": 10,
+          "direction": -10
+        }
+      ]
+    },
+    {
+      "name": "enemy3",
+      "transform": {
+        "position": [ 750, 200 ],
+        "rotation": 0,
+        "scale": 3,
+        "tag": "enemy",
+        "prototype": true
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "turtle",
+          "animations": [
+            {
+              "name": "turtle",
+              "fps": 3,
+              "numColumns": 6,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 6, 
+              "restitution": 5,
+              "loop": true,
+              "isDynamic": true,
+              "textureName": "Textures/turtle.png"
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0,
+          "gravityScale": 0,
+          "shape": "circle",
+          "scale": [ 1, 1 ]
+        },
+        {
+          "type": "EnemyComponent",
+          "speed": 10,
+          "direction": -10
+        }
+      ]
+    }
+  ]
+}

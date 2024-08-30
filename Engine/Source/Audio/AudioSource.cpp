@@ -5,7 +5,7 @@
 bool AudioSource::Play(Audio& audio, bool loop, float volume, float pitch)
 {
     m_audioClip->m_sound->setMode(loop ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF);
-    FMOD_RESULT result = audio.m_audio->playSound(m_audioClip->m_sound,0,false,&m_channel);
+    FMOD_RESULT result = audio.m_audio->playSound(m_audioClip->m_sound, 0, false, &m_channel);
     if (result != FMOD_OK) {
         std::cerr << "Error Playing Sound: " << FMOD_ErrorString(result);
         return false;

@@ -21,8 +21,7 @@ void EnginePhysicsComponent::ApplyForce(const Vector2& force)
 	acceleration += force / mass;
 }
 
-void EnginePhysicsComponent::ApplyTorque(float angle)
-{ 
+void EnginePhysicsComponent::ApplyTorque(float angle) {
 	owner->transform.rotation += angle;
 }
 

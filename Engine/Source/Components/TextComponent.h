@@ -13,9 +13,9 @@ public:
 
 	CLASS_DECLARATION(TextComponent)
 
-	CLASS_PROTOTYPE(TextComponent)
+		CLASS_PROTOTYPE(TextComponent)
 
-	void Update(float dt) override;
+		void Update(float dt) override;
 	void Draw(Renderer& renderer) override;
 
 	void SetText(const std::string& text);

@@ -1,5 +1,8 @@
 #include "CharacterComponent.h"
 #include "Engine.h"
+#include <string>
+#include "EnemyComponent.h"
+#include <Components/CircleCollisionComponent.h>
 
 FACTORY_REGISTER(CharacterComponent)
 
@@ -9,6 +12,8 @@ void CharacterComponent::Initialize()
 
 	physics = owner->GetComponent<PhysicsComponent>();
 	animation = owner->GetComponent<TextureAnimationComponent>();
+
+	scoreText = owner->GetComponent<TextComponent>();
 }
 
 void CharacterComponent::Update(float dt)
@@ -22,22 +27,27 @@ void CharacterComponent::Update(float dt)
 	//right movement
 	if (owner->scene->engine->GetInput().GetKeyDown(SDL_SCANCODE_D)
 		|| owner->scene->engine->GetInput().GetKeyDown(SDL_SCANCODE_RIGHT)) direction.x = 1;
-	if (owner->scene->engine->GetInput().GetKeyDown(SDL_SCANCODE_SPACE)) {
-		physics->SetVelocity(Vector2{ 0,-50 });
-	}
+	if (owner->scene->engine->GetInput().GetKeyDown(SDL_SCANCODE_SPACE)
+		&& !owner->scene->engine->GetInput().GetPrevKeyDown(SDL_SCANCODE_SPACE)) physics->SetVelocity(Vector2{ 0,-150 });
 
 	physics->ApplyForce(direction * speed);
-	//if left
 
-	//if right
-
+	if (owner->transform.position.x < 0 || owner->transform.position.x > 800 || owner->transform.position.y < 0 || owner->transform.position.y > 600) {
+		owner->scene->GetGame()->EndGame(); //exception unhandled nullptr
+	}
 
 }
 
 void CharacterComponent::OnCollisionEnter(Actor* actor)
 {
-	if (actor->tag == "ground") {
-
+	std::cout << "collision" << std::endl;
+	if (actor->tag == "enemy") {
+		owner->destroyed = true;
+		owner->isActive = false;
+	}
+	if (actor->tag == "turtle") {
+		score += 100;
+		actor->GetComponent<class AudioComponent>()->Play();
 	}
 }
 

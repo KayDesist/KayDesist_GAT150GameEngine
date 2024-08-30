@@ -1,3 +1,4 @@
+
 #include "EFile.h"
 #include <iostream>
 #include <fstream>
@@ -12,7 +13,7 @@ string File::GetFilePath()
 bool File::SetFilePath(const string& filepath)
 {
     error_code ec;
-    filesystem::current_path(filepath,ec);
+    filesystem::current_path(filepath, ec);
     return !ec;
 }
 
@@ -24,8 +25,8 @@ bool File::FileExist(const std::string& filepath)
 bool File::GetFileSize(const std::string& filepath, int* size)
 {
     error_code ec;
-     *size = (int)filesystem::file_size(filepath,ec);
-     return !ec;
+    *size = (int)filesystem::file_size(filepath, ec);
+    return !ec;
 }
 
 bool File::readFile(const std::string& filepath, std::string& buffer)
